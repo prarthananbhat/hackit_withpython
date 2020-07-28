@@ -1,0 +1,38 @@
+import numpy as np
+
+
+class Solution:
+    # @param A : integer
+    # @return a list of integers
+    def getRow(self, A):
+        # build the traingle
+        if A == 0:
+            return [1]
+        else:
+            border_values = 2
+            if A > 1:
+                sum_values = A - border_values + 1
+            else:
+                return [1, 1]
+            initial_triangle = [[1], [1, 1]]
+            print(initial_triangle)
+            previous_row = initial_triangle[1]
+
+            for i in range(2, A+1):
+                print("Row Add", i)
+                print("Previous Row", previous_row)
+                for j in range(sum_values):
+                    sumvalue_list = []
+
+                    for k in range(len(previous_row) - 1):
+                        v = previous_row[k] + previous_row[k + 1]
+                        sumvalue_list.append(v)
+                previous_row=[1] + sumvalue_list + [1]
+
+            return previous_row
+
+s = Solution()
+
+result = s.getRow(2)
+print("Main Result")
+print(result)
